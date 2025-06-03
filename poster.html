@@ -2,40 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Poster Fullscreen Carousel</title>
+  <title>True Seamless Carousel</title>
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     html, body {
-      width: 100%;
       height: 100%;
       overflow: hidden;
       background: black;
-      font-family: sans-serif;
     }
 
     .carousel-container {
-      position: relative;
       width: 100%;
       height: 100vh;
       overflow: hidden;
+      position: relative;
     }
 
     .carousel-track {
       display: flex;
-      width: 100%;
       height: 100%;
-      transition: transform 0.8s ease-in-out;
+      animation: scroll 24s linear infinite;
     }
 
     .poster {
-      min-width: 100%;
+      flex: 0 0 100%;
       height: 100%;
-      position: relative;
     }
 
     .poster img {
@@ -44,37 +40,20 @@
       object-fit: cover;
     }
 
-    .nav-button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.4);
-      border: none;
-      color: white;
-      font-size: 48px;
-      padding: 10px 20px;
-      cursor: pointer;
-      z-index: 10;
-    }
-
-    .nav-button.left {
-      left: 20px;
-    }
-
-    .nav-button.right {
-      right: 20px;
-    }
-
-    .nav-button:hover {
-      background: rgba(0, 0, 0, 0.6);
+    @keyframes scroll {
+      0%   { transform: translateX(0%); }
+      25%  { transform: translateX(-100%); }
+      50%  { transform: translateX(-200%); }
+      75%  { transform: translateX(-300%); }
+      100% { transform: translateX(-400%); }
     }
   </style>
 </head>
 <body>
 
   <div class="carousel-container">
-    <button class="nav-button left" onclick="moveSlide(-1)">&#10094;</button>
-    <div class="carousel-track" id="track">
+    <div class="carousel-track">
+      <!-- 原始轮播图 -->
       <div class="poster">
         <img src="https://static1.moviewebimages.com/wordpress/wp-content/uploads/2024/08/netflix-logo.jpeg" alt="Poster 1">
       </div>
@@ -84,25 +63,16 @@
       <div class="poster">
         <img src="https://www.channelnews.com.au/wp-content/uploads/2023/07/renewed-netflix-shows-2023-beyond-jpg.webp" alt="Poster 3">
       </div>
+
+      <!-- 👇 重复整个内容，保证循环顺滑 -->
+      <div class="poster">
+        <img src="https://static1.moviewebimages.com/wordpress/wp-content/uploads/2024/08/netflix-logo.jpeg" alt="Poster 1 Again">
+      </div>
+      <div class="poster">
+        <img src="https://www.whats-on-netflix.com/wp-content/uploads/2022/11/netflix-animated-movies-coming-soon-2023.png" alt="Poster 2 Again">
+      </div>
     </div>
-    <button class="nav-button right" onclick="moveSlide(1)">&#10095;</button>
   </div>
-
-  <script>
-    let currentSlide = 0;
-    const track = document.getElementById('track');
-    const totalSlides = document.querySelectorAll('.poster').length;
-
-    function moveSlide(direction) {
-      currentSlide += direction;
-      if (currentSlide < 0) currentSlide = totalSlides - 1;
-      if (currentSlide >= totalSlides) currentSlide = 0;
-      track.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }
-
-    // Optional autoplay:
-    setInterval(() => moveSlide(1), 6000);
-  </script>
 
 </body>
 </html>
