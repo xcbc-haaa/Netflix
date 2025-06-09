@@ -74,8 +74,8 @@
     }
 
     .frame {
-      width: 600px;
-      height: 360px;
+      width: 300px;
+      height: 180px;
       border: 6px solid #333;
       border-radius: 8px;
       background: #111;
@@ -185,6 +185,27 @@
       animation: pulse 4s infinite ease-in-out;
       z-index: -1;
     }
+
+    .tableau-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #e50914;
+      color: white;
+      padding: 12px 24px;
+      font-size: 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      box-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
+      z-index: 10; 
+      transition: all 0.3s ease;
+    }
+
+.tableau-btn:hover {
+  background-color: #ff2c2c;
+  box-shadow: 0 0 30px rgba(229, 9, 20, 0.9);
+}
+
 
     @keyframes pulse {
       0% { opacity: 0.3; transform: scale(0.95); }
@@ -363,4 +384,12 @@
     </div>
     
     <div class="gradient-overlay bottom-overlay"></div>
-    
+    <div style="text-align: center; margin-top: 20px;">
+  <a href="https://xcbc-haaa.github.io/netflix-carousel/Tableau.html"
+     target="_blank"
+     style="display: inline-block; padding: 12px 24px; background-color: #e50914; color: white; font-weight: bold; border-radius: 6px; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: background-color 0.3s;">
+    Go To Tableau
+  </a>
+</div>
+  </body>
+</html>
