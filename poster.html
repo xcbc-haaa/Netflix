@@ -1,1 +1,92 @@
-error
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Poster Flip Carousel</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: black;
+    }
+
+    .carousel-container {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-track {
+      display: flex;
+      height: 100%;
+      transition: transform 1s ease-in-out;
+    }
+
+    .poster {
+      flex: 0 0 100%;
+      height: 100%;
+    }
+
+    .poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="carousel-container">
+    <div class="carousel-track" id="track">
+      <!-- 原始海报 -->
+      <div class="poster">
+        <img src="https://static1.moviewebimages.com/wordpress/wp-content/uploads/2024/08/netflix-logo.jpeg" alt="Poster 1">
+      </div>
+      <div class="poster">
+        <img src="https://www.whats-on-netflix.com/wp-content/uploads/2022/11/netflix-animated-movies-coming-soon-2023.png" alt="Poster 2">
+      </div>
+      <div class="poster">
+        <img src="https://www.channelnews.com.au/wp-content/uploads/2023/07/renewed-netflix-shows-2023-beyond-jpg.webp" alt="Poster 3">
+      </div>
+      <!-- 👇 重复第一张，实现无缝轮播 -->
+      <div class="poster">
+        <img src="https://static1.moviewebimages.com/wordpress/wp-content/uploads/2024/08/netflix-logo.jpeg" alt="Poster 1 Again">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const track = document.getElementById('track');
+    const slides = document.querySelectorAll('.poster');
+    let currentIndex = 0;
+
+    function autoSlide() {
+      currentIndex++;
+      track.style.transition = 'transform 1s ease-in-out';
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      if (currentIndex === slides.length - 1) {
+        // 到达副本后，在动画完成后跳回第一张
+        setTimeout(() => {
+          track.style.transition = 'none';
+          currentIndex = 0;
+          track.style.transform = `translateX(0%)`;
+          // 触发一次重绘，重新启用过渡
+          void track.offsetWidth;
+          track.style.transition = 'transform 1s ease-in-out';
+        }, 1000); // 必须等过渡完成
+      }
+    }
+
+    setInterval(autoSlide, 5000); // 每 5 秒翻一页
+  </script>
+
+</body>
+</html>
