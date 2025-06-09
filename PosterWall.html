@@ -186,10 +186,16 @@
       z-index: -1;
     }
 
-    .tableau-btn {
+    .tableau-btn-container {
       position: fixed;
       bottom: 30px;
-      right: 30px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 20; /* Higher than the overlay */
+    }
+
+    .tableau-btn {
       background-color: #e50914;
       color: white;
       padding: 12px 24px;
@@ -197,15 +203,14 @@
       border-radius: 10px;
       text-decoration: none;
       box-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
-      z-index: 1000; 
       transition: all 0.3s ease;
+      display: inline-block;
     }
 
-.tableau-btn:hover {
-  background-color: #ff2c2c;
-  box-shadow: 0 0 30px rgba(229, 9, 20, 0.9);
-}
-
+    .tableau-btn:hover {
+      background-color: #ff2c2c;
+      box-shadow: 0 0 30px rgba(229, 9, 20, 0.9);
+    }
 
     @keyframes pulse {
       0% { opacity: 0.3; transform: scale(0.95); }
@@ -384,12 +389,14 @@
     </div>
     
     <div class="gradient-overlay bottom-overlay"></div>
-    <div style="text-align: center; margin-top: 20px;">
-  <a href="https://xcbc-haaa.github.io/netflix-carousel/Tableau.html"
-     target="_blank"
-     style="display: inline-block; padding: 12px 24px; background-color: #e50914; color: white; font-weight: bold; border-radius: 6px; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: background-color 0.3s;">
-    Go To Tableau
-  </a>
-</div>
-  </body>
+  </div>
+  
+  <div class="tableau-btn-container">
+    <a href="https://xcbc-haaa.github.io/netflix-carousel/Tableau.html" 
+       target="_blank" 
+       class="tableau-btn">
+      Go To Tableau
+    </a>
+  </div>
+</body>
 </html>
